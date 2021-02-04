@@ -12,7 +12,7 @@ sample_signal = signal.square(2 * np.pi * 5 * t)
 
 #################Frequency/Position Domain#####################
 def plot_magnitude_spectrum(signal,title,f_ratio=1):
-    fft_val = fft(fftshift(signal))
+    fft_val = fft(signal)
     magnitude_spectrum = np.abs(fft_val)
     num_frequncy_bins = int(len(t) * f_ratio)
     plt.plot(t[:num_frequncy_bins],magnitude_spectrum[:num_frequncy_bins],label = title)
