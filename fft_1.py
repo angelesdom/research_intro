@@ -1,29 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.fft import fft,fftfreq,ifft,fftshift
+from scipy import signal
 ###################TIME/MOMENTUM DOMAIN########################
 p0 = 2
-A = np.sqrt(1/(2*p0)) #Amplitude of square wave
-t = np.linspace(-p0,p0,4096) 
+A = np.sqrt(1/(2*p0))
+t = np.linspace(-5,5,10000)
 y = np.zeros_like(t)
-y[(t>-p0)*(t<p0)] =A  #ploting over one period
-plt.plot(t,y,label="Momentum Function")
-
+y[(t > -2)*(t<2)] = A
+sample_signal = signal.square(2 * np.pi * 5 * t)
 
 #################Frequency/Position Domain#####################
-fft_val = fft(abs(y),axis=-1)
+def plot_magnitude_spectrum(signal,title,f_ratio=1):
+    fft_val = fft(signal)
+    magnitude_spectrum = np.abs(fft_val)
+    num_frequncy_bins = int(len(t) * f_ratio)
+    plt.plot(t[:num_frequncy_bins],magnitude_spectrum[:num_frequncy_bins],label = title)
+    plt.show()
 
-plt.plot(t,fft_val,label = "Computed FFT")
-print(fft_val)
-##############Calculated FFT by Hand########################
-
-x = np.linspace(-p0-p0,p0*2,4096)
-y = [((np.sqrt(1/(np.pi*p0)))*np.sin(p0*t))/t for t in x]
-
-
-plt.plot(x,y,label = "Theoretical FFT")
-plt.legend()
-plt.xlim([-3,3])
-plt.ylim([-1,1])
-plt.title('p0 = 2')
-plt.show()
+plot_magnitude_spectrum(sample_signal,"square wave",.01)
