@@ -16,6 +16,7 @@ def plot_magnitude_spectrum(signal,title,f_ratio=1):
     magnitude_spectrum = np.abs(fft_val)
     num_frequncy_bins = int(len(t) * f_ratio)
     plt.plot(t[:num_frequncy_bins],magnitude_spectrum[:num_frequncy_bins],label = title)
+    plt.title(title)
     plt.show()
 
 plot_magnitude_spectrum(sample_signal,"square wave",.01)
