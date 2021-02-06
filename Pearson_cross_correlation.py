@@ -35,7 +35,7 @@ def pearson_cross_correlation(Amplitude,omega,phi=0):
     ###########plot###############
     plt.plot(t,signal_1,label=r'$\phi$ shift 0')
     plt.plot(t,signal_2,label=r'$\phi$ shift {:.2}'.format(phi))
-    plt.title(r"r = {:.2f}, $\omega$ =  {:.2f}, amplitude {:.2f}, $\phi$ = {:.2f}".format(r,Amplitude,omega,phi))
+    plt.title(r"r = {:.2f}, $\omega$ =  {:.2f}, amplitude {:.2f}, $\phi$ = {:.2f}".format(r,omega,Amplitude,phi))
     plt.ylabel("Amplitude")
     plt.xlabel("Time (t)")
     plt.grid()
